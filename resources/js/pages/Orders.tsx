@@ -5,6 +5,7 @@ import Paginate from '@/components/paginate';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { CreateModalOrder } from '@/components/Order/CreateModalOrder';
+import { ShowModalOrder } from '@/components/Order/ShowModalOrder';
 import { UpdateModalOrder } from '@/components/Order/UpdateModalOrder';
 import { UpdateStatusModalOrder } from '@/components/Order/UpdateStatusModalOrder';
 import {
@@ -82,16 +83,27 @@ export default function Orders({
                                                     ] ?? 'default'
                                                 }
                                             >
-                                                {order.status === 'pendiente' && 'Pendiente'}
-                                                {order.status === 'en_ruta' && 'En ruta'}
-                                                {order.status === 'completada' && 'Completada'}
-                                                {order.status === 'cancelada' && 'Cancelada'}
+                                                {order.status === 'pendiente' &&
+                                                    'Pendiente'}
+                                                {order.status === 'en_ruta' &&
+                                                    'En ruta'}
+                                                {order.status ===
+                                                    'completada' &&
+                                                    'Completada'}
+                                                {order.status === 'cancelada' &&
+                                                    'Cancelada'}
                                             </Badge>
                                         </TableCell>
                                         <TableCell className="text-right">
                                             <div className="flex justify-end gap-1">
-                                                <UpdateStatusModalOrder order={order} />
-                                                <UpdateModalOrder employees={employees} order={order} />
+                                                <ShowModalOrder order={order} />
+                                                <UpdateStatusModalOrder
+                                                    order={order}
+                                                />
+                                                <UpdateModalOrder
+                                                    employees={employees}
+                                                    order={order}
+                                                />
                                             </div>
                                         </TableCell>
                                     </TableRow>

@@ -17,7 +17,7 @@ class OrderController extends Controller
     public function index()
     {
         $employees = Employee::select('id', 'name')->get();
-        $orders = Order::with('employee:id,name')->paginate(5);
+        $orders = Order::with('employee:id,name,email')->paginate(5);
 
         return Inertia::render('Orders', [
             'orders' => $orders,
