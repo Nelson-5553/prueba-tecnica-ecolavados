@@ -39,6 +39,8 @@ export function UpdateModalEmployee({ employee }: UpdateModalEmployeeProps) {
                     action={updateEmployee(employee.id).url}
                     onSuccess={() => setOpen(false)}
                 >
+                        {({ errors, processing }) => (
+                            <>
                     <DialogHeader>
                         <DialogTitle>Actualizar Empleado</DialogTitle>
                         <DialogDescription>
@@ -82,8 +84,17 @@ export function UpdateModalEmployee({ employee }: UpdateModalEmployeeProps) {
                         <DialogClose asChild>
                             <Button variant="outline">Cancel</Button>
                         </DialogClose>
-                        <Button type="submit">Actualizar</Button>
+                        {processing ? (
+                            <Button disabled>
+                                <span className="loading loading-spinner" />
+                                Updating...
+                            </Button>
+                        ) : (
+                            <Button type="submit">Actualizar</Button>
+                        )}
                     </DialogFooter>
+                    </>
+                        )}
                 </Form>
             </DialogContent>
         </Dialog>

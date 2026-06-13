@@ -62,6 +62,8 @@ export function UpdateModalOrder({ employees, order }: UpdateModalOrderProps) {
                     action={updateOrder(order.id).url}
                     onSuccess={() => setOpen(false)}
                 >
+                        {({ errors, processing }) => (
+                            <>
                     <DialogHeader>
                         <DialogTitle>Actualizar Orden</DialogTitle>
                         <DialogDescription>
@@ -194,8 +196,17 @@ export function UpdateModalOrder({ employees, order }: UpdateModalOrderProps) {
                         <DialogClose asChild>
                             <Button variant="outline">Cancelar</Button>
                         </DialogClose>
-                        <Button type="submit">Actualizar orden</Button>
+                        {processing ? (
+                            <Button disabled>
+                                <span className="loading loading-spinner" />
+                                Actualizando...
+                            </Button>
+                        ) : (
+                            <Button type="submit">Actualizar orden</Button>
+                        )}
                     </DialogFooter>
+                    </>
+                        )}
                 </Form>
             </DialogContent>
         </Dialog>

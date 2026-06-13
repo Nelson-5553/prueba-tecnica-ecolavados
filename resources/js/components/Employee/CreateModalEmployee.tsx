@@ -35,6 +35,8 @@ export function CreateModalEmployee() {
                     action={storeEmployee().url}
                     onSuccess={() => setOpen(false)}
                 >
+                     {({ errors, processing }) => (
+                    <>
                     <DialogHeader>
                         <DialogTitle>Crear Empleado</DialogTitle>
                         <DialogDescription>
@@ -78,8 +80,17 @@ export function CreateModalEmployee() {
                         <DialogClose asChild>
                             <Button variant="outline">Cancel</Button>
                         </DialogClose>
+                      {processing ? (
+                        <Button disabled>
+                            <span className="loading loading-spinner" />
+                            Saving...
+                        </Button>
+                    ) : (
                         <Button type="submit">Save changes</Button>
+                    )}
                     </DialogFooter>
+                    </> 
+                        )}
                 </Form>
             </DialogContent>
         </Dialog>

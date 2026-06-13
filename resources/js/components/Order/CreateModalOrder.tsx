@@ -59,6 +59,8 @@ export function CreateModalOrder({ employees }: CreateModalOrderProps) {
                     action={storeOrder().url}
                     onSuccess={() => setOpen(false)}
                 >
+                        {({ errors, processing }) => (
+                            <>
                     <DialogHeader>
                         <DialogTitle>Crear Orden</DialogTitle>
                         <DialogDescription>
@@ -185,8 +187,17 @@ export function CreateModalOrder({ employees }: CreateModalOrderProps) {
                         <DialogClose asChild>
                             <Button variant="outline">Cancelar</Button>
                         </DialogClose>
-                        <Button type="submit">Guardar orden</Button>
+                        {processing ? (
+                            <Button disabled>
+                                <span className="loading loading-spinner" />
+                                Guardando...
+                            </Button>
+                        ) : (
+                            <Button type="submit">Guardar orden</Button>
+                        )}
                     </DialogFooter>
+                    </>
+                        )}
                 </Form>
             </DialogContent>
         </Dialog>

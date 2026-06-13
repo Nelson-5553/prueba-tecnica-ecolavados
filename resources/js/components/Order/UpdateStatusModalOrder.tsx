@@ -89,6 +89,8 @@ export function UpdateStatusModalOrder({ order }: UpdateStatusModalOrderProps) {
                     action={patchOrder(order.id).url}
                     onSuccess={() => setOpen(false)}
                 >
+                    {({ errors, processing }) => (
+                        <>
                     <DialogHeader>
                         <DialogTitle>Actualizar Estado</DialogTitle>
                         <DialogDescription>
@@ -137,8 +139,17 @@ export function UpdateStatusModalOrder({ order }: UpdateStatusModalOrderProps) {
                         <DialogClose asChild>
                             <Button variant="outline">Cancelar</Button>
                         </DialogClose>
-                        <Button type="submit">Guardar</Button>
+                        {processing ? (
+                            <Button disabled>
+                                <span className="loading loading-spinner" />
+                                Actualizando...
+                            </Button>
+                        ) : (
+                            <Button type="submit">Guardar</Button>
+                        )}
                     </DialogFooter>
+                    </>
+                        )}
                 </Form>
             </DialogContent>
         </Dialog>
