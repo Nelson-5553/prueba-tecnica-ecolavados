@@ -35,7 +35,7 @@ export function CreateModalEmployee() {
                     action={storeEmployee().url}
                     onSuccess={() => setOpen(false)}
                 >
-                     {({ errors, processing }) => (
+                     {({ processing }) => (
                     <>
                     <DialogHeader>
                         <DialogTitle>Crear Empleado</DialogTitle>

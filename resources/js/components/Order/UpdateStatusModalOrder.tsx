@@ -89,7 +89,7 @@ export function UpdateStatusModalOrder({ order }: UpdateStatusModalOrderProps) {
                     action={patchOrder(order.id).url}
                     onSuccess={() => setOpen(false)}
                 >
-                    {({ errors, processing }) => (
+                    {({ processing }) => (
                         <>
                     <DialogHeader>
                         <DialogTitle>Actualizar Estado</DialogTitle>

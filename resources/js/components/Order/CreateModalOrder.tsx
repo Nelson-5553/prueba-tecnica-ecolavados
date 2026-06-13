@@ -59,7 +59,7 @@ export function CreateModalOrder({ employees }: CreateModalOrderProps) {
                     action={storeOrder().url}
                     onSuccess={() => setOpen(false)}
                 >
-                        {({ errors, processing }) => (
+                        {({ processing }) => (
                             <>
                     <DialogHeader>
                         <DialogTitle>Crear Orden</DialogTitle>

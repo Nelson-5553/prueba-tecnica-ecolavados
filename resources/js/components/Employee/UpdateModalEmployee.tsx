@@ -39,7 +39,7 @@ export function UpdateModalEmployee({ employee }: UpdateModalEmployeeProps) {
                     action={updateEmployee(employee.id).url}
                     onSuccess={() => setOpen(false)}
                 >
-                        {({ errors, processing }) => (
+                        {({ processing }) => (
                             <>
                     <DialogHeader>
                         <DialogTitle>Actualizar Empleado</DialogTitle>

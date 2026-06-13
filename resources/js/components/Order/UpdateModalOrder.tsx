@@ -62,7 +62,7 @@ export function UpdateModalOrder({ employees, order }: UpdateModalOrderProps) {
                     action={updateOrder(order.id).url}
                     onSuccess={() => setOpen(false)}
                 >
-                        {({ errors, processing }) => (
+                        {({ processing }) => (
                             <>
                     <DialogHeader>
                         <DialogTitle>Actualizar Orden</DialogTitle>
