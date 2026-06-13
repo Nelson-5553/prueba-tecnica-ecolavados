@@ -27,7 +27,7 @@ export default function AppLayout({
                     <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
                         <a
                             href="/"
-                            className="flex items-center gap-2 text-sm font-semibold tracking-tight"
+                            className="items-center gap-2 text-sm font-semibold tracking-tight md:block hidden"
                         >
                             <span className="flex size-7 items-center justify-center rounded-lg bg-primary text-primary-foreground">
                                 <Droplets className="size-4" />
@@ -35,7 +35,7 @@ export default function AppLayout({
                             Ecolavados
                         </a>
 
-                        <nav className="flex items-center gap-1">
+                        <nav className="md:ml-auto flex items-center gap-1">
                             <a
                                 href="/orders"
                                 className={`inline-flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
