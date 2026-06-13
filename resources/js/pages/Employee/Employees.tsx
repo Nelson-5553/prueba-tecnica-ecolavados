@@ -1,6 +1,7 @@
 import { Pencil, RefreshCw, ChevronLeft, ChevronRight } from 'lucide-react';
 import AppLayout from '@/components/AppLayout';
 import { CreateModalEmployee } from '@/components/Employee/CreateModalEmployee';
+import { UpdateModalEmployee } from '@/components/Employee/UpdateModalEmployee';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import {
@@ -43,20 +44,9 @@ export default function Employees({ employees }: { employees: Employee[] }) {
                                         <TableCell>{employee.email}</TableCell>
                                         <TableCell className="text-right">
                                             <div className="flex justify-end gap-1">
-                                                <Button
-                                                    variant="ghost"
-                                                    size="icon-xs"
-                                                    title="Cambiar estado"
-                                                >
-                                                    <RefreshCw className="size-3" />
-                                                </Button>
-                                                <Button
-                                                    variant="ghost"
-                                                    size="icon-xs"
-                                                    title="Actualizar"
-                                                >
-                                                    <Pencil className="size-3" />
-                                                </Button>
+                                                <UpdateModalEmployee
+                                                    employee={employee}
+                                                />
                                             </div>
                                         </TableCell>
                                     </TableRow>

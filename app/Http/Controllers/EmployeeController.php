@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Http\Requests\EmployeeStoreRequest;
+use App\Http\Requests\UpdateEmployeeRequest;
 use Inertia\Inertia;
 
 class EmployeeController extends Controller
@@ -43,19 +44,12 @@ class EmployeeController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Employee $employee)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Employee $employee)
+    public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
-        //
+        $employee->update($request->validated());
+        return redirect()->route('employees')->with('success', 'Empleado actualizado exitosamente.');
     }
 
     /**

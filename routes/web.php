@@ -8,3 +8,4 @@ Route::inertia('/', 'Orders')->name('home');
 Route::get('/orders', [EmployeeController::class, 'orders'])->name('orders');
 Route::get('/employees', [EmployeeController::class, 'index'])->name('employees');
 Route::post('/employees', [EmployeeController::class, 'store'])->name('employees.store');
+Route::put('/employees/{employee}', [EmployeeController::class, 'update'])->name('employees.update');
