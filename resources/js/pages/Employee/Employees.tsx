@@ -18,21 +18,8 @@ import {
 } from '@/components/ui/table';
 import type { Employee } from '@/types';
 
-const employees: Employee[] = [
-    { id: 1, name: 'María López', email: 'maria.lopez@ecolavados.com', created_at: '', updated_at: '' },
-    { id: 2, name: 'Carlos Ruiz', email: 'carlos.ruiz@ecolavados.com', created_at: '', updated_at: '' },
-    { id: 3, name: 'Laura Díaz', email: 'laura.diaz@ecolavados.com', created_at: '', updated_at: '' },
-    {
-        id: 4,
-        name: 'Roberto Fernández',
-        email: 'roberto.fernandez@ecolavados.com',
-        created_at: '',
-        updated_at: '',
-    },
-    { id: 5, name: 'Sofía Torres', email: 'sofia.torres@ecolavados.com', created_at: '', updated_at: '' },
-];
 
-export default function Employees() {
+export default function Employees({ employees }: { employees: Employee[] }) {
     return (
         <AppLayout title="Empleados" activeNav="employees">
             <div className="mx-auto max-w-4xl">

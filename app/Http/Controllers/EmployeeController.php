@@ -12,18 +12,15 @@ class EmployeeController extends Controller
     {
         return Inertia::render('Orders');
     }
-
-    public function employees()
-    {
-        return Inertia::render('Employee/Employees');
-    }
-
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $employees = Employee::limit(5)->get();
+         return Inertia::render('Employee/Employees', [
+            'employees' => $employees,
+        ]);
     }
 
     /**
