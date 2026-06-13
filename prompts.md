@@ -18,7 +18,7 @@
 
 ### 2. Seeders con regla de negocio
 
-> @database/seeders/ necesito que aumentes el numero de orders y limites la cantidad de empleados a 5 ten en cuenta las siguientes reglas un conductor solo puede tener mas ordenes relacionadas siempre y cuando esten completadas o canceladas pero si estan pendientes o en ruta no deben ni pueden tener mas con estos estados.
+> @database/seeders/ necesito que aumentes el numero de orders y limites la cantidad de empleados a 5 ten en cuenta las siguientes reglas un conductor solo puede tener mas ordenes relacionadas siempre y cuando esten entregadas o canceladas pero si estan pendientes o en ruta no deben ni pueden tener mas con estos estados.
 
 ```php
 $orders = [
