@@ -2,26 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employee;
-use App\Models\Order;
-use Inertia\Inertia;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use App\Models\Employee;
+use App\Models\Order;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $employees = Employee::select('id', 'name')->get();
-        $orders = Order::with('employee:id,name,email')->paginate(5);
+
+        $query = Order::with('employee:id,name,email');
+
+        if ($request->filled('employee_id')) {
+            $query->where('employee_id', $request->employee_id);
+        }
+
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        $orders = $query->paginate(5);
 
         return Inertia::render('Orders', [
             'orders' => $orders,
             'employees' => $employees,
+            'filters' => $request->only(['employee_id', 'status']),
         ]);
     }
 
@@ -31,6 +43,7 @@ class OrderController extends Controller
     public function store(StoreOrderRequest $request)
     {
         Order::create($request->validated());
+
         return redirect()->route('orders')->with('success', 'Orden creada exitosamente.');
     }
 
@@ -47,10 +60,10 @@ class OrderController extends Controller
      */
     public function change_status(Order $order)
     {
-            $order->status = $order->status === 'pendiente' ? 'en_ruta' : 'completada';
-            $order->save();
-    
-            return redirect()->route('orders')->with('success', 'Estado de la orden actualizado exitosamente.');
+        $order->status = $order->status === 'pendiente' ? 'en_ruta' : 'completada';
+        $order->save();
+
+        return redirect()->route('orders')->with('success', 'Estado de la orden actualizado exitosamente.');
     }
 
     /**
@@ -59,6 +72,7 @@ class OrderController extends Controller
     public function update(UpdateOrderRequest $request, Order $order)
     {
         $order->update($request->validated());
+
         return redirect()->route('orders')->with('success', 'Orden actualizada exitosamente.');
     }
 
