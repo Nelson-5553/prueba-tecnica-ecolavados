@@ -6,15 +6,17 @@ use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Models\Employee;
 use App\Models\Order;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request): Response
     {
         $employees = Employee::select('id', 'name')->get();
 
@@ -40,7 +42,7 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreOrderRequest $request)
+    public function store(StoreOrderRequest $request): RedirectResponse
     {
         Order::create($request->validated());
 
@@ -48,17 +50,9 @@ class OrderController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Order $order)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function change_status(Request $request, Order $order)
+    public function change_status(Request $request, Order $order): RedirectResponse
     {
         $validated = $request->validate([
             'status' => ['required', 'string', function (string $attribute, mixed $value, \Closure $fail) use ($order) {
@@ -67,7 +61,6 @@ class OrderController extends Controller
                     'en_ruta' => ['entregado', 'cancelada'],
                     'entregado' => ['cancelada'],
                     'cancelada' => ['pendiente', 'en_ruta', 'entregado'],
-                    default => [],
                 };
 
                 if (! in_array($value, $allowed, true)) {
@@ -84,18 +77,10 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateOrderRequest $request, Order $order)
+    public function update(UpdateOrderRequest $request, Order $order): RedirectResponse
     {
         $order->update($request->validated());
 
         return redirect()->route('orders')->with('success', 'Orden actualizada exitosamente.');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Order $order)
-    {
-        //
     }
 }
