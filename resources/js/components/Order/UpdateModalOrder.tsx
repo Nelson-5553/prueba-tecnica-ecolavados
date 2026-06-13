@@ -102,7 +102,7 @@ export function UpdateModalOrder({ employees, order }: UpdateModalOrderProps) {
                             />
                         </Field>
 
-                        <Field>
+                        <Field className="col-span-2">
                             <Label>Conductor asignado</Label>
                             <Select
                                 name="employee_id"
@@ -151,33 +151,6 @@ export function UpdateModalOrder({ employees, order }: UpdateModalOrderProps) {
                                                 Sin resultados
                                             </div>
                                         )}
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
-                        </Field>
-
-                        <Field>
-                            <Label>Estado</Label>
-                            <Select
-                                name="status"
-                                defaultValue={order.status || ''}
-                                required
-                            >
-                                <SelectTrigger className="w-full">
-                                    <SelectValue placeholder="Seleccionar estado" />
-                                </SelectTrigger>
-
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectLabel>Estados</SelectLabel>
-                                        {STATUS_OPTIONS.map((option) => (
-                                            <SelectItem
-                                                key={option.value}
-                                                value={option.value}
-                                            >
-                                                {option.label}
-                                            </SelectItem>
-                                        ))}
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>

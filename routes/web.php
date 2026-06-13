@@ -13,3 +13,4 @@ Route::put('/employees/{employee}', [EmployeeController::class, 'update'])->name
 Route::get('/orders', [OrderController::class, 'index'])->name('orders');
 Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
 Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
+Route::patch('/orders/{order}/change-status', [OrderController::class, 'change_status'])->name('orders.change_status');

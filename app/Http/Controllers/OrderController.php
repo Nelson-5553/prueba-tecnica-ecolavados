@@ -45,9 +45,12 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Order $order)
+    public function change_status(Order $order)
     {
-        //
+            $order->status = $order->status === 'pendiente' ? 'en_ruta' : 'completada';
+            $order->save();
+    
+            return redirect()->route('orders')->with('success', 'Estado de la orden actualizado exitosamente.');
     }
 
     /**

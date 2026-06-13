@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { CreateModalOrder } from '@/components/Order/CreateModalOrder';
 import { UpdateModalOrder } from '@/components/Order/UpdateModalOrder';
+import { UpdateStatusModalOrder } from '@/components/Order/UpdateStatusModalOrder';
 import {
     Table,
     TableBody,
@@ -81,18 +82,15 @@ export default function Orders({
                                                     ] ?? 'default'
                                                 }
                                             >
-                                                {order.status}
+                                                {order.status === 'pendiente' && 'Pendiente'}
+                                                {order.status === 'en_ruta' && 'En ruta'}
+                                                {order.status === 'completada' && 'Completada'}
+                                                {order.status === 'cancelada' && 'Cancelada'}
                                             </Badge>
                                         </TableCell>
                                         <TableCell className="text-right">
                                             <div className="flex justify-end gap-1">
-                                                <Button
-                                                    variant="ghost"
-                                                    size="icon-xs"
-                                                    title="Cambiar estado"
-                                                >
-                                                    <RefreshCw className="size-3" />
-                                                </Button>
+                                                <UpdateStatusModalOrder order={order} />
                                                 <UpdateModalOrder employees={employees} order={order} />
                                             </div>
                                         </TableCell>
