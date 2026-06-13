@@ -17,7 +17,7 @@ export default function AppLayout({
 }: AppLayoutProps) {
     return (
         <>
-        <Toaster position="bottom-right" theme="dark"/>
+        <Toaster position="bottom-right" theme="light"/>
          <FlashMessages />
 
             <Head title={title} />
