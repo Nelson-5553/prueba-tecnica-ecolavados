@@ -1,8 +1,8 @@
 import { Head } from '@inertiajs/react';
-import { Toaster } from "sileo";
-import { FlashMessages } from '@/components/FlashMenssage';
 import { ClipboardList, Users, Droplets } from 'lucide-react';
 import type { ReactNode } from 'react';
+import { Toaster } from "sileo";
+import { FlashMessages } from '@/components/FlashMenssage';
 
 interface AppLayoutProps {
     title: string;

@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
 import { usePage } from '@inertiajs/react';
+import { useEffect } from 'react';
 import { sileo } from 'sileo';
 
 export function FlashMessages() {

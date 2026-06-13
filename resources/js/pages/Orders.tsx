@@ -1,15 +1,13 @@
-import { RefreshCw } from 'lucide-react';
-import { router } from '@inertiajs/react';
+import { router } from '@inertiajs/react';;
 import AppLayout from '@/components/AppLayout';
-import { Badge } from '@/components/ui/badge';
-import Paginate from '@/components/paginate';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { ColumnFilter } from '@/components/ui/column-filter';
 import { CreateModalOrder } from '@/components/Order/CreateModalOrder';
 import { ShowModalOrder } from '@/components/Order/ShowModalOrder';
 import { UpdateModalOrder } from '@/components/Order/UpdateModalOrder';
 import { UpdateStatusModalOrder } from '@/components/Order/UpdateStatusModalOrder';
+import Paginate from '@/components/paginate';
+import { Badge } from '@/components/ui/badge';
+import { Card, CardContent } from '@/components/ui/card';
+import { ColumnFilter } from '@/components/ui/column-filter';
 import {
     Table,
     TableBody,

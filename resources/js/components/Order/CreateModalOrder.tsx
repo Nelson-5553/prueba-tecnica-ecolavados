@@ -28,13 +28,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { store as storeOrder } from '@/routes/orders';
 import type { Employee } from '@/types';
 
-const STATUS_OPTIONS = [
-    { value: 'pendiente', label: 'Pendiente' },
-    { value: 'en_ruta', label: 'En ruta' },
-    { value: 'entregado', label: 'Entregado' },
-    { value: 'cancelada', label: 'Cancelada' },
-];
-
 interface CreateModalOrderProps {
     employees: Employee[];
 }
