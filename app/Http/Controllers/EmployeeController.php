@@ -4,9 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class EmployeeController extends Controller
 {
+    public function orders()
+    {
+        return Inertia::render('Orders');
+    }
+
+    public function employees()
+    {
+        return Inertia::render('Employee/Employees');
+    }
+
     /**
      * Display a listing of the resource.
      */
