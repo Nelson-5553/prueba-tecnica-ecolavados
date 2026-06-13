@@ -1,11 +1,6 @@
-import {
-    Plus,
-    Pencil,
-    RefreshCw,
-    ChevronLeft,
-    ChevronRight,
-} from 'lucide-react';
+import { Pencil, RefreshCw, ChevronLeft, ChevronRight } from 'lucide-react';
 import AppLayout from '@/components/AppLayout';
+import { CreateModalEmployee } from '@/components/Employee/CreateModalEmployee';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import {
@@ -18,7 +13,6 @@ import {
 } from '@/components/ui/table';
 import type { Employee } from '@/types';
 
-
 export default function Employees({ employees }: { employees: Employee[] }) {
     return (
         <AppLayout title="Empleados" activeNav="employees">
@@ -27,10 +21,7 @@ export default function Employees({ employees }: { employees: Employee[] }) {
                     <CardContent>
                         <div className="mb-4 flex items-center justify-between">
                             <h2 className="text-base font-medium">Empleados</h2>
-                            <Button size="sm">
-                                <Plus className="size-4" />
-                                Crear Empleados
-                            </Button>
+                            <CreateModalEmployee />
                         </div>
 
                         <Table>

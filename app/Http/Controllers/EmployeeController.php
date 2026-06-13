@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use App\Http\Requests\EmployeeStoreRequest;
 use Inertia\Inertia;
 
 class EmployeeController extends Controller
@@ -24,19 +25,13 @@ class EmployeeController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EmployeeStoreRequest $request)
     {
-        //
+        $employee = Employee::create($request->validated());
+
+        return redirect()->route('employees')->with('success', 'Empleado creado exitosamente.');
     }
 
     /**
