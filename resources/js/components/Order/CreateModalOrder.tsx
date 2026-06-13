@@ -1,4 +1,4 @@
-import { Form } from '@inertiajs/react';
+import { Form, usePage } from '@inertiajs/react';
 import { Plus, Search } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -12,7 +12,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from '@/components/ui/dialog';
-import { Field } from '@/components/ui/field';
+import { Field, FieldError } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import {
@@ -42,6 +42,7 @@ interface CreateModalOrderProps {
 export function CreateModalOrder({ employees }: CreateModalOrderProps) {
     const [open, setOpen] = useState(false);
     const [search, setSearch] = useState('');
+    const errors = usePage().props.errors as Record<string, string>;
 
     const filteredEmployees = useMemo(
         () =>
@@ -83,6 +84,13 @@ export function CreateModalOrder({ employees }: CreateModalOrderProps) {
                                 placeholder="Ej. Juan García"
                                 required
                             />
+                            <FieldError
+                                errors={
+                                    errors.client_name
+                                        ? [{ message: errors.client_name }]
+                                        : undefined
+                                }
+                            />
                         </Field>
 
                         <Field>
@@ -97,6 +105,13 @@ export function CreateModalOrder({ employees }: CreateModalOrderProps) {
                                     new Date().toISOString().split('T')[0]
                                 }
                                 required
+                            />
+                            <FieldError
+                                errors={
+                                    errors.order_date
+                                        ? [{ message: errors.order_date }]
+                                        : undefined
+                                }
                             />
                         </Field>
 
@@ -146,6 +161,13 @@ export function CreateModalOrder({ employees }: CreateModalOrderProps) {
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>
+                            <FieldError
+                                errors={
+                                    errors.employee_id
+                                        ? [{ message: errors.employee_id }]
+                                        : undefined
+                                }
+                            />
                         </Field>
 
                         <Field className="col-span-2">
@@ -155,6 +177,13 @@ export function CreateModalOrder({ employees }: CreateModalOrderProps) {
                                 name="observations"
                                 placeholder="Notas adicionales sobre la orden..."
                                 rows={3}
+                            />
+                            <FieldError
+                                errors={
+                                    errors.observations
+                                        ? [{ message: errors.observations }]
+                                        : undefined
+                                }
                             />
                         </Field>
                     </div>

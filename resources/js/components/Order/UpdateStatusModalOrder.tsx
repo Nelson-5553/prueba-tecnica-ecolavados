@@ -1,4 +1,4 @@
-import { Form } from '@inertiajs/react';
+import { Form, usePage } from '@inertiajs/react';
 import { RefreshCw } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -12,7 +12,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from '@/components/ui/dialog';
-import { Field } from '@/components/ui/field';
+import { Field, FieldError } from '@/components/ui/field';
 import { Label } from '@/components/ui/label';
 import {
     Select,
@@ -69,6 +69,7 @@ interface UpdateStatusModalOrderProps {
 
 export function UpdateStatusModalOrder({ order }: UpdateStatusModalOrderProps) {
     const [open, setOpen] = useState(false);
+    const errors = usePage().props.errors as Record<string, string>;
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
@@ -122,6 +123,13 @@ export function UpdateStatusModalOrder({ order }: UpdateStatusModalOrderProps) {
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>
+                            <FieldError
+                                errors={
+                                    errors.status
+                                        ? [{ message: errors.status }]
+                                        : undefined
+                                }
+                            />
                         </Field>
                     </div>
 

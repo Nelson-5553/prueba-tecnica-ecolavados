@@ -1,4 +1,4 @@
-import { Form } from '@inertiajs/react';
+import { Form, usePage } from '@inertiajs/react';
 import { Pencil, Plus } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -12,7 +12,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from '@/components/ui/dialog';
-import { Field, FieldGroup } from '@/components/ui/field';
+import { Field, FieldError, FieldGroup } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { update as updateEmployee } from '@/routes/employees';
@@ -24,6 +24,7 @@ interface UpdateModalEmployeeProps {
 
 export function UpdateModalEmployee({ employee }: UpdateModalEmployeeProps) {
     const [open, setOpen] = useState(false);
+    const errors = usePage().props.errors as Record<string, string>;
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
@@ -52,6 +53,13 @@ export function UpdateModalEmployee({ employee }: UpdateModalEmployeeProps) {
                                 name="name"
                                 defaultValue={employee.name}
                             />
+                            <FieldError
+                                errors={
+                                    errors.name
+                                        ? [{ message: errors.name }]
+                                        : undefined
+                                }
+                            />
                         </Field>
                         <Field>
                             <Label htmlFor="email-1">Email</Label>
@@ -60,6 +68,13 @@ export function UpdateModalEmployee({ employee }: UpdateModalEmployeeProps) {
                                 name="email"
                                 type="email"
                                 defaultValue={employee.email}
+                            />
+                            <FieldError
+                                errors={
+                                    errors.email
+                                        ? [{ message: errors.email }]
+                                        : undefined
+                                }
                             />
                         </Field>
                     </FieldGroup>

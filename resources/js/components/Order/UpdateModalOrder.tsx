@@ -1,4 +1,4 @@
-import { Form } from '@inertiajs/react';
+import { Form, usePage } from '@inertiajs/react';
 import { Pencil, Search } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -12,7 +12,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from '@/components/ui/dialog';
-import { Field } from '@/components/ui/field';
+import { Field, FieldError } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import {
@@ -42,6 +42,7 @@ interface UpdateModalOrderProps {
 
 export function UpdateModalOrder({ employees, order }: UpdateModalOrderProps) {
     const [open, setOpen] = useState(false);
+    const errors = usePage().props.errors as Record<string, string>;
 
     const [search, setSearch] = useState('');
 
@@ -86,6 +87,13 @@ export function UpdateModalOrder({ employees, order }: UpdateModalOrderProps) {
                                 defaultValue={order.client_name}
                                 required
                             />
+                            <FieldError
+                                errors={
+                                    errors.client_name
+                                        ? [{ message: errors.client_name }]
+                                        : undefined
+                                }
+                            />
                         </Field>
 
                         <Field>
@@ -99,6 +107,13 @@ export function UpdateModalOrder({ employees, order }: UpdateModalOrderProps) {
                                 type="date"
                                 defaultValue={order.order_date}
                                 required
+                            />
+                            <FieldError
+                                errors={
+                                    errors.order_date
+                                        ? [{ message: errors.order_date }]
+                                        : undefined
+                                }
                             />
                         </Field>
 
@@ -154,6 +169,13 @@ export function UpdateModalOrder({ employees, order }: UpdateModalOrderProps) {
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>
+                            <FieldError
+                                errors={
+                                    errors.employee_id
+                                        ? [{ message: errors.employee_id }]
+                                        : undefined
+                                }
+                            />
                         </Field>
 
                         <Field className="col-span-2">
@@ -165,6 +187,13 @@ export function UpdateModalOrder({ employees, order }: UpdateModalOrderProps) {
                                 placeholder="Notas adicionales sobre la orden..."
                                 rows={3}
                                 defaultValue={order.observations || ''}
+                            />
+                            <FieldError
+                                errors={
+                                    errors.observations
+                                        ? [{ message: errors.observations }]
+                                        : undefined
+                                }
                             />
                         </Field>
                     </div>

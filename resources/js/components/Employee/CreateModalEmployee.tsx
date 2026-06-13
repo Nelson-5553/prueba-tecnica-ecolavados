@@ -1,4 +1,4 @@
-import { Form } from '@inertiajs/react';
+import { Form, usePage } from '@inertiajs/react';
 import { Plus } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -12,13 +12,14 @@ import {
     DialogTitle,
     DialogTrigger,
 } from '@/components/ui/dialog';
-import { Field, FieldGroup } from '@/components/ui/field';
+import { Field, FieldError, FieldGroup } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { store as storeEmployee } from '@/routes/employees';
 
 export function CreateModalEmployee() {
     const [open, setOpen] = useState(false);
+    const errors = usePage().props.errors as Record<string, string>;
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
@@ -48,6 +49,13 @@ export function CreateModalEmployee() {
                                 name="name"
                                 defaultValue="Pedro Duarte"
                             />
+                            <FieldError
+                                errors={
+                                    errors.name
+                                        ? [{ message: errors.name }]
+                                        : undefined
+                                }
+                            />
                         </Field>
                         <Field>
                             <Label htmlFor="email-1">Email</Label>
@@ -56,6 +64,13 @@ export function CreateModalEmployee() {
                                 name="email"
                                 type="email"
                                 defaultValue="pedro@duarte.com"
+                            />
+                            <FieldError
+                                errors={
+                                    errors.email
+                                        ? [{ message: errors.email }]
+                                        : undefined
+                                }
                             />
                         </Field>
                     </FieldGroup>
