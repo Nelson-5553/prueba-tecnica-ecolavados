@@ -33,6 +33,39 @@ const STATUS_OPTIONS = [
     { value: 'cancelada', label: 'Cancelada' },
 ];
 
+const getAvailableStatuses = (currentStatus: string) => {
+    switch (currentStatus) {
+        case 'pendiente':
+            return STATUS_OPTIONS.filter(
+                (option) =>
+                    option.value === 'pendiente' ||
+                    option.value === 'en_ruta' ||
+                    option.value === 'cancelada'
+            );
+
+        case 'en_ruta':
+            return STATUS_OPTIONS.filter(
+                (option) =>
+                    option.value === 'en_ruta' ||
+                    option.value === 'entregado' ||
+                    option.value === 'cancelada'
+            );
+
+        case 'entregado':
+            return STATUS_OPTIONS.filter(
+                (option) => option.value === 'entregado'
+            );
+
+        case 'cancelada':
+            return STATUS_OPTIONS.filter(
+                (option) => option.value === 'cancelada'
+            );
+
+        default:
+            return [];
+    }
+};
+
 interface UpdateStatusModalOrderProps {
     order: Order;
 }
@@ -79,7 +112,7 @@ export function UpdateStatusModalOrder({ order }: UpdateStatusModalOrderProps) {
                                 <SelectContent>
                                     <SelectGroup>
                                         <SelectLabel>Estados</SelectLabel>
-                                        {STATUS_OPTIONS.map((option) => (
+                                        {getAvailableStatuses(order.status).map((option) => (
                                             <SelectItem
                                                 key={option.value}
                                                 value={option.value}

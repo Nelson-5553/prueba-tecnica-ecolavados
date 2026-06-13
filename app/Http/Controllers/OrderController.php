@@ -18,7 +18,7 @@ class OrderController extends Controller
     {
         $employees = Employee::select('id', 'name')->get();
 
-        $query = Order::with('employee:id,name,email');
+        $query = Order::with('employee:id,name,email')->orderBy('updated_at', 'desc');
 
         if ($request->filled('employee_id')) {
             $query->where('employee_id', $request->employee_id);
