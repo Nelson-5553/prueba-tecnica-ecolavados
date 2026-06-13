@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use App\Models\Order;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreOrderRequest;
 
 class OrderController extends Controller
 {
@@ -13,26 +15,22 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $order = Order::with('employee')->paginate(5);
-        return Inertia::render('Orders', [
-            'orders' => $order
-        ]);
-    }
+        $employees = Employee::select('id', 'name')->get();
+        $orders = Order::with('employee:id,name')->paginate(5);
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return Inertia::render('Orders', [
+            'orders' => $orders,
+            'employees' => $employees,
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreOrderRequest $request)
     {
-        //
+        Order::create($request->validated());
+        return redirect()->route('orders')->with('success', 'Orden creada exitosamente.');
     }
 
     /**

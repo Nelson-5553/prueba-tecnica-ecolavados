@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import Paginate from '@/components/paginate';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { CreateModalOrder } from '@/components/Order/CreateModalOrder';
 import {
     Table,
     TableBody,
@@ -12,7 +13,7 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table';
-import type { Order, PaginatedData } from '@/types';
+import type { Employee, Order, PaginatedData } from '@/types';
 
 const estadoVariant: Record<
     string,
@@ -24,7 +25,13 @@ const estadoVariant: Record<
     cancelada: 'destructive',
 };
 
-export default function Orders({ orders }: { orders: PaginatedData<Order> }) {
+export default function Orders({
+    orders,
+    employees,
+}: {
+    orders: PaginatedData<Order>;
+    employees: Employee[];
+}) {
     return (
         <AppLayout title="Órdenes" activeNav="orders">
             <div className="mx-auto max-w-4xl">
@@ -36,10 +43,7 @@ export default function Orders({ orders }: { orders: PaginatedData<Order> }) {
                     <CardContent>
                         <div className="mb-4 flex items-center justify-between">
                             <h2 className="text-base font-medium">Órdenes</h2>
-                            <Button size="sm">
-                                <Plus className="size-4" />
-                                Crear orden
-                            </Button>
+                            <CreateModalOrder employees={employees} />
                         </div>
 
                         <Table>
@@ -48,7 +52,7 @@ export default function Orders({ orders }: { orders: PaginatedData<Order> }) {
                                     <TableHead>Id</TableHead>
                                     <TableHead>Cliente</TableHead>
                                     <TableHead>Fecha</TableHead>
-                                    <TableHead>Responsable</TableHead>
+                                    <TableHead>Conductor</TableHead>
                                     <TableHead>Estado</TableHead>
                                     <TableHead className="text-right">
                                         Acciones
