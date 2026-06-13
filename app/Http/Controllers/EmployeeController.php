@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employee;
-use Illuminate\Http\Request;
 use App\Http\Requests\EmployeeStoreRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
+use App\Models\Employee;
 use Inertia\Inertia;
 
 class EmployeeController extends Controller
@@ -14,13 +13,15 @@ class EmployeeController extends Controller
     {
         return Inertia::render('Orders');
     }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $employees = Employee::limit(5)->get();
-         return Inertia::render('Employee/Employees', [
+        $employees = Employee::paginate(5);
+
+        return Inertia::render('Employee/Employees', [
             'employees' => $employees,
         ]);
     }
@@ -49,6 +50,7 @@ class EmployeeController extends Controller
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
         $employee->update($request->validated());
+
         return redirect()->route('employees')->with('success', 'Empleado actualizado exitosamente.');
     }
 

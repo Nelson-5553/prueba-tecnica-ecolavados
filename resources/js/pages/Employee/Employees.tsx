@@ -1,8 +1,7 @@
-import { Pencil, RefreshCw, ChevronLeft, ChevronRight } from 'lucide-react';
 import AppLayout from '@/components/AppLayout';
 import { CreateModalEmployee } from '@/components/Employee/CreateModalEmployee';
 import { UpdateModalEmployee } from '@/components/Employee/UpdateModalEmployee';
-import { Button } from '@/components/ui/button';
+import Paginate from '@/components/paginate';
 import { Card, CardContent } from '@/components/ui/card';
 import {
     Table,
@@ -12,9 +11,13 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table';
-import type { Employee } from '@/types';
+import type { Employee, PaginatedData } from '@/types';
 
-export default function Employees({ employees }: { employees: Employee[] }) {
+export default function Employees({
+    employees,
+}: {
+    employees: PaginatedData<Employee>;
+}) {
     return (
         <AppLayout title="Empleados" activeNav="employees">
             <div className="mx-auto max-w-4xl">
@@ -37,7 +40,7 @@ export default function Employees({ employees }: { employees: Employee[] }) {
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
-                                {employees.map((employee) => (
+                                {employees.data.map((employee) => (
                                     <TableRow key={employee.id}>
                                         <TableCell>{employee.id}</TableCell>
                                         <TableCell>{employee.name}</TableCell>
@@ -54,31 +57,7 @@ export default function Employees({ employees }: { employees: Employee[] }) {
                             </TableBody>
                         </Table>
 
-                        <div className="mt-4 flex items-center justify-between">
-                            <div className="flex gap-1">
-                                {[1, 2, 3, 4, 5].map((page) => (
-                                    <Button
-                                        key={page}
-                                        variant={
-                                            page === 1 ? 'default' : 'ghost'
-                                        }
-                                        size="icon-xs"
-                                    >
-                                        {page}
-                                    </Button>
-                                ))}
-                            </div>
-                            <div className="flex gap-2">
-                                <Button variant="outline" size="sm">
-                                    <ChevronLeft className="size-4" />
-                                    Anterior
-                                </Button>
-                                <Button variant="outline" size="sm">
-                                    Siguiente
-                                    <ChevronRight className="size-4" />
-                                </Button>
-                            </div>
-                        </div>
+                        <Paginate data={employees} />
                     </CardContent>
                 </Card>
             </div>
