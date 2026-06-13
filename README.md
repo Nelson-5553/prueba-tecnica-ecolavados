@@ -49,7 +49,7 @@ touch database/database.sqlite
 php artisan migrate --seed
 
 # 6. Instalar dependencias de frontend y compilar assets
-npm install
+pnpm install
 npm run build
 
 # 7. Iniciar el servidor de desarrollo (PHP + Vite + Queue)
