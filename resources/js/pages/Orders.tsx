@@ -1,12 +1,7 @@
-import {
-    Plus,
-    Pencil,
-    RefreshCw,
-    ChevronLeft,
-    ChevronRight,
-} from 'lucide-react';
+import { Plus, Pencil, RefreshCw } from 'lucide-react';
 import AppLayout from '@/components/AppLayout';
 import { Badge } from '@/components/ui/badge';
+import Paginate from '@/components/paginate';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import {
@@ -17,56 +12,19 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table';
-
-const orders = [
-    {
-        id: 1,
-        cliente: 'Juan Pérez',
-        fecha: '2026-01-15',
-        responsable: 'María López',
-        estado: 'Pendiente',
-    },
-    {
-        id: 2,
-        cliente: 'Ana García',
-        fecha: '2026-02-10',
-        responsable: 'Carlos Ruiz',
-        estado: 'En Proceso',
-    },
-    {
-        id: 3,
-        cliente: 'Pedro Martínez',
-        fecha: '2026-03-05',
-        responsable: 'Laura Díaz',
-        estado: 'Completada',
-    },
-    {
-        id: 4,
-        cliente: 'Laura Sánchez',
-        fecha: '2026-04-20',
-        responsable: 'Roberto Fernández',
-        estado: 'Cancelada',
-    },
-    {
-        id: 5,
-        cliente: 'Carlos Ramírez',
-        fecha: '2026-05-12',
-        responsable: 'Sofía Torres',
-        estado: 'Pendiente',
-    },
-];
+import type { Order, PaginatedData } from '@/types';
 
 const estadoVariant: Record<
     string,
-    'default' | 'secondary' | 'destructive' | 'outline'
+    'default' | 'outline' | 'secondary' | 'destructive'
 > = {
-    Pendiente: 'secondary',
-    'En Proceso': 'default',
-    Completada: 'outline',
-    Cancelada: 'destructive',
+    pendiente: 'outline',
+    en_ruta: 'default',
+    completada: 'secondary',
+    cancelada: 'destructive',
 };
 
-export default function Orders() {
+export default function Orders({ orders }: { orders: PaginatedData<Order> }) {
     return (
         <AppLayout title="Órdenes" activeNav="orders">
             <div className="mx-auto max-w-4xl">
@@ -98,23 +56,27 @@ export default function Orders() {
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
-                                {orders.map((order) => (
+                                {orders.data.map((order) => (
                                     <TableRow key={order.id}>
                                         <TableCell>{order.id}</TableCell>
-                                        <TableCell>{order.cliente}</TableCell>
-                                        <TableCell>{order.fecha}</TableCell>
                                         <TableCell>
-                                            {order.responsable}
+                                            {order.client_name}
+                                        </TableCell>
+                                        <TableCell>
+                                            {order.order_date}
+                                        </TableCell>
+                                        <TableCell>
+                                            {order.employee.name}
                                         </TableCell>
                                         <TableCell>
                                             <Badge
                                                 variant={
                                                     estadoVariant[
-                                                        order.estado
+                                                        order.status
                                                     ] ?? 'default'
                                                 }
                                             >
-                                                {order.estado}
+                                                {order.status}
                                             </Badge>
                                         </TableCell>
                                         <TableCell className="text-right">
@@ -140,31 +102,7 @@ export default function Orders() {
                             </TableBody>
                         </Table>
 
-                        <div className="mt-4 flex items-center justify-between">
-                            <div className="flex gap-1">
-                                {[1, 2, 3, 4, 5].map((page) => (
-                                    <Button
-                                        key={page}
-                                        variant={
-                                            page === 1 ? 'default' : 'ghost'
-                                        }
-                                        size="icon-xs"
-                                    >
-                                        {page}
-                                    </Button>
-                                ))}
-                            </div>
-                            <div className="flex gap-2">
-                                <Button variant="outline" size="sm">
-                                    <ChevronLeft className="size-4" />
-                                    Anterior
-                                </Button>
-                                <Button variant="outline" size="sm">
-                                    Siguiente
-                                    <ChevronRight className="size-4" />
-                                </Button>
-                            </div>
-                        </div>
+                        <Paginate data={orders} />
                     </CardContent>
                 </Card>
             </div>

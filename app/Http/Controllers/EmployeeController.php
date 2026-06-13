@@ -9,11 +9,6 @@ use Inertia\Inertia;
 
 class EmployeeController extends Controller
 {
-    public function orders()
-    {
-        return Inertia::render('Orders');
-    }
-
     /**
      * Display a listing of the resource.
      */
