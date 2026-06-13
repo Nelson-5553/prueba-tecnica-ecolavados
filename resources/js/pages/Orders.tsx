@@ -1,10 +1,11 @@
-import { Plus, Pencil, RefreshCw } from 'lucide-react';
+import { RefreshCw } from 'lucide-react';
 import AppLayout from '@/components/AppLayout';
 import { Badge } from '@/components/ui/badge';
 import Paginate from '@/components/paginate';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { CreateModalOrder } from '@/components/Order/CreateModalOrder';
+import { UpdateModalOrder } from '@/components/Order/UpdateModalOrder';
 import {
     Table,
     TableBody,
@@ -92,13 +93,7 @@ export default function Orders({
                                                 >
                                                     <RefreshCw className="size-3" />
                                                 </Button>
-                                                <Button
-                                                    variant="ghost"
-                                                    size="icon-xs"
-                                                    title="Actualizar"
-                                                >
-                                                    <Pencil className="size-3" />
-                                                </Button>
+                                                <UpdateModalOrder employees={employees} order={order} />
                                             </div>
                                         </TableCell>
                                     </TableRow>

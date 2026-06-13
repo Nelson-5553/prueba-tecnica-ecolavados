@@ -7,6 +7,7 @@ use App\Models\Order;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreOrderRequest;
+use App\Http\Requests\UpdateOrderRequest;
 
 class OrderController extends Controller
 {
@@ -52,9 +53,10 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Order $order)
+    public function update(UpdateOrderRequest $request, Order $order)
     {
-        //
+        $order->update($request->validated());
+        return redirect()->route('orders')->with('success', 'Orden actualizada exitosamente.');
     }
 
     /**
