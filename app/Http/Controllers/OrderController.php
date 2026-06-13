@@ -28,7 +28,7 @@ class OrderController extends Controller
             $query->where('status', $request->status);
         }
 
-        $orders = $query->paginate(5);
+        $orders = $query->paginate(10)->withQueryString();
 
         return Inertia::render('Orders', [
             'orders' => $orders,

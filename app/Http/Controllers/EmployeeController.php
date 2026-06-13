@@ -14,7 +14,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::paginate(5);
+        $employees = Employee::paginate(10)->withQueryString();
 
         return Inertia::render('Employee/Employees', [
             'employees' => $employees,
