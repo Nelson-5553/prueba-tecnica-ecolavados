@@ -50,7 +50,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Update the status of the specified resource in storage.
      */
     public function change_status(Request $request, Order $order): RedirectResponse
     {
