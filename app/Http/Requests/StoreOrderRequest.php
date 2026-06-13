@@ -26,10 +26,7 @@ class StoreOrderRequest extends FormRequest
             'client_name' => 'required|string|max:255',
             'order_date' => 'required|date',
             'employee_id' => 'required|exists:employees,id',
-            'status' => [
-                'required',
-                Rule::in(['pendiente', 'en_ruta', 'entregado', 'cancelada']),
-            ],
+            'status' => 'in:pendiente,completada,cancelada,en_ruta',
             'observations' => 'nullable|string',
         ];
     }

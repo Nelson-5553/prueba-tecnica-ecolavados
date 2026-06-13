@@ -38,27 +38,24 @@ const getAvailableStatuses = (currentStatus: string) => {
         case 'pendiente':
             return STATUS_OPTIONS.filter(
                 (option) =>
-                    option.value === 'pendiente' ||
-                    option.value === 'en_ruta' ||
-                    option.value === 'cancelada'
+                    option.value === 'en_ruta' || option.value === 'cancelada',
             );
 
         case 'en_ruta':
             return STATUS_OPTIONS.filter(
                 (option) =>
-                    option.value === 'en_ruta' ||
                     option.value === 'entregado' ||
-                    option.value === 'cancelada'
+                    option.value === 'cancelada',
             );
 
         case 'entregado':
             return STATUS_OPTIONS.filter(
-                (option) => option.value === 'entregado'
+                (option) => option.value === 'cancelada',
             );
 
         case 'cancelada':
             return STATUS_OPTIONS.filter(
-                (option) => option.value === 'cancelada'
+                (option) => option.value !== 'cancelada',
             );
 
         default:
@@ -112,14 +109,16 @@ export function UpdateStatusModalOrder({ order }: UpdateStatusModalOrderProps) {
                                 <SelectContent>
                                     <SelectGroup>
                                         <SelectLabel>Estados</SelectLabel>
-                                        {getAvailableStatuses(order.status).map((option) => (
-                                            <SelectItem
-                                                key={option.value}
-                                                value={option.value}
-                                            >
-                                                {option.label}
-                                            </SelectItem>
-                                        ))}
+                                        {getAvailableStatuses(order.status).map(
+                                            (option) => (
+                                                <SelectItem
+                                                    key={option.value}
+                                                    value={option.value}
+                                                >
+                                                    {option.label}
+                                                </SelectItem>
+                                            ),
+                                        )}
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>

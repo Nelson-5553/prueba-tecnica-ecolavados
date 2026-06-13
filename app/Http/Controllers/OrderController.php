@@ -58,10 +58,25 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function change_status(Order $order)
+    public function change_status(Request $request, Order $order)
     {
-        $order->status = $order->status === 'pendiente' ? 'en_ruta' : 'entregado';
-        $order->save();
+        $validated = $request->validate([
+            'status' => ['required', 'string', function (string $attribute, mixed $value, \Closure $fail) use ($order) {
+                $allowed = match ($order->status) {
+                    'pendiente' => ['en_ruta', 'cancelada'],
+                    'en_ruta' => ['entregado', 'cancelada'],
+                    'entregado' => ['cancelada'],
+                    'cancelada' => ['pendiente', 'en_ruta', 'entregado'],
+                    default => [],
+                };
+
+                if (! in_array($value, $allowed, true)) {
+                    $fail("No se puede cambiar de {$order->status} a {$value}.");
+                }
+            }],
+        ]);
+
+        $order->update($validated);
 
         return redirect()->route('orders')->with('success', 'Estado de la orden actualizado exitosamente.');
     }
