@@ -29,7 +29,7 @@ import type { Order } from '@/types';
 const STATUS_OPTIONS = [
     { value: 'pendiente', label: 'Pendiente' },
     { value: 'en_ruta', label: 'En ruta' },
-    { value: 'completada', label: 'Completada' },
+    { value: 'entregado', label: 'Entregado' },
     { value: 'cancelada', label: 'Cancelada' },
 ];
 
@@ -43,7 +43,11 @@ export function UpdateStatusModalOrder({ order }: UpdateStatusModalOrderProps) {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button variant="ghost" size="icon-xs" title="Actualizar estado">
+                <Button
+                    variant="ghost"
+                    size="icon-xs"
+                    title="Actualizar estado"
+                >
                     <RefreshCw className="size-3" />
                 </Button>
             </DialogTrigger>

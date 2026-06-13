@@ -26,7 +26,7 @@ class UpdateOrderRequest extends FormRequest
             'client_name' => 'required|string|max:255',
             'order_date' => 'required|date',
             'employee_id' => 'required|exists:employees,id',
-            'status' => 'in:pendiente,completada,cancelada,en_ruta',
+            'status' => 'in:pendiente,entregado,cancelada,en_ruta',
             'observations' => 'nullable|string',
         ];
     }

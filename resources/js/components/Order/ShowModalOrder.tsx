@@ -17,7 +17,7 @@ import type { Order } from '@/types';
 const statusLabels: Record<string, string> = {
     pendiente: 'Pendiente',
     en_ruta: 'En ruta',
-    completada: 'Completada',
+    entregado: 'Entregado',
     cancelada: 'Cancelada',
 };
 

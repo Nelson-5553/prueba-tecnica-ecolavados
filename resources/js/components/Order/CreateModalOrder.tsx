@@ -31,7 +31,7 @@ import type { Employee } from '@/types';
 const STATUS_OPTIONS = [
     { value: 'pendiente', label: 'Pendiente' },
     { value: 'en_ruta', label: 'En ruta' },
-    { value: 'completada', label: 'Completada' },
+    { value: 'entregado', label: 'Entregado' },
     { value: 'cancelada', label: 'Cancelada' },
 ];
 
@@ -108,7 +108,7 @@ export function CreateModalOrder({ employees }: CreateModalOrderProps) {
                                 </SelectTrigger>
                                 <SelectContent>
                                     <div
-                                        className="flex items-center gap-1.5 px-2 py-1.5 col-span-2"
+                                        className="col-span-2 flex items-center gap-1.5 px-2 py-1.5"
                                         onPointerDown={(e) =>
                                             e.stopPropagation()
                                         }
@@ -147,7 +147,6 @@ export function CreateModalOrder({ employees }: CreateModalOrderProps) {
                                 </SelectContent>
                             </Select>
                         </Field>
-
 
                         <Field className="col-span-2">
                             <Label htmlFor="observations">Observaciones</Label>

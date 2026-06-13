@@ -19,7 +19,7 @@ return new class extends Migration
             $table->enum('status', [
                 'pendiente',
                 'en_ruta',
-                'completada',
+                'entregado',
                 'cancelada',
             ])->default('pendiente');
             $table->text('observations')->nullable();

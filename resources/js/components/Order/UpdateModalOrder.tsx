@@ -31,7 +31,7 @@ import type { Employee, Order } from '@/types';
 const STATUS_OPTIONS = [
     { value: 'pendiente', label: 'Pendiente' },
     { value: 'en_ruta', label: 'En ruta' },
-    { value: 'completada', label: 'Completada' },
+    { value: 'entregado', label: 'Entregado' },
     { value: 'cancelada', label: 'Cancelada' },
 ];
 

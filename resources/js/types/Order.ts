@@ -8,7 +8,7 @@ export interface Order {
         name: string;
         email: string;
     };
-    status: 'pendiente' | 'en_ruta' | 'completada' | 'cancelada';
+    status: 'pendiente' | 'en_ruta' | 'entregado' | 'cancelada';
     observations?: string;
     created_at: string;
     updated_at: string;

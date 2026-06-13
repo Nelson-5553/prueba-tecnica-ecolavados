@@ -60,7 +60,7 @@ class OrderController extends Controller
      */
     public function change_status(Order $order)
     {
-        $order->status = $order->status === 'pendiente' ? 'en_ruta' : 'completada';
+        $order->status = $order->status === 'pendiente' ? 'en_ruta' : 'entregado';
         $order->save();
 
         return redirect()->route('orders')->with('success', 'Estado de la orden actualizado exitosamente.');

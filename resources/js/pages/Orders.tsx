@@ -23,7 +23,7 @@ import type { Employee, Order, PaginatedData } from '@/types';
 const STATUS_OPTIONS = [
     { value: 'pendiente', label: 'Pendiente' },
     { value: 'en_ruta', label: 'En ruta' },
-    { value: 'completada', label: 'Completada' },
+    { value: 'entregado', label: 'Entregado' },
     { value: 'cancelada', label: 'Cancelada' },
 ];
 
@@ -33,7 +33,7 @@ const estadoVariant: Record<
 > = {
     pendiente: 'outline',
     en_ruta: 'default',
-    completada: 'secondary',
+    entregado: 'secondary',
     cancelada: 'destructive',
 };
 
@@ -137,9 +137,8 @@ export default function Orders({
                                                     'Pendiente'}
                                                 {order.status === 'en_ruta' &&
                                                     'En ruta'}
-                                                {order.status ===
-                                                    'completada' &&
-                                                    'Completada'}
+                                                {order.status === 'entregado' &&
+                                                    'Entregado'}
                                                 {order.status === 'cancelada' &&
                                                     'Cancelada'}
                                             </Badge>
