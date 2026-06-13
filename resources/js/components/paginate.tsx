@@ -6,7 +6,7 @@ import type { PaginatedData } from '@/types';
 export default function Paginate<T>({ data }: { data: PaginatedData<T> }) {
     return (
         <div className="mt-4 flex items-center justify-between">
-            <div className="flex gap-1">
+            <div className="sm:block hidden gap-1">
                 {data.links
                     .filter(
                         (link) => link.url && !Number.isNaN(Number(link.label)),
