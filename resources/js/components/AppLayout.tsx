@@ -1,4 +1,6 @@
 import { Head } from '@inertiajs/react';
+import { Toaster } from "sileo";
+import { FlashMessages } from '@/components/FlashMenssage';
 import { ClipboardList, Users, Droplets } from 'lucide-react';
 import type { ReactNode } from 'react';
 
@@ -15,6 +17,9 @@ export default function AppLayout({
 }: AppLayoutProps) {
     return (
         <>
+        <Toaster position="bottom-right" theme="dark"/>
+         <FlashMessages />
+
             <Head title={title} />
 
             <div className="flex min-h-screen flex-col bg-background">
